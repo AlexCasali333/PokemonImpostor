@@ -2,57 +2,51 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Configuración - Pokémon Impostor</title>
+    <title>Sala de Juegos - Lobby</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"> <link rel="stylesheet" th:href="@{/css/lobby.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-<h2 class="header-title">Configuración</h2>
+<h1 class="header-title">Sala de Juegos</h1>
+<p class="subtitle">Selecciona una experiencia para comenzar</p>
 
-<form action="/start" method="post" class="container">
+<div class="container lobby-container">
 
-    <!-- Part 1: Players -->
-    <div class="card">
-        <div class="card-header-flex">
-            <h3><i class="fas fa-users"></i> (Max 10) Jugadores actuales: <span id="playerCountVal">3</span></h3>
+    <a th:href="@{/impostor}" class="game-select-card">
+        <div class="game-icon-wrapper icon-impostor">
+            <i class="fas fa-user-secret"></i>
         </div>
 
-        <div class="input-group mb-3">
-            <i class="fa-solid fa-minus" id="removePlayer"></i>
-            <i class="fa-solid fa-plus" id="addPlayer"></i>
+        <div class="game-info">
+            <h3 class="game-title">Impostor</h3>
+            <p class="game-desc">Descubre quién miente. Edición Pokémon.</p>
         </div>
-    </div>
 
-    <div id="namesContainer"></div>
-
-    <!-- Part 2: Generations -->
-    <div class="card">
-        <h3><i class="fas fa-dna"></i> Generaciones</h3>
-        <p class="card-instruction mb-15">Selecciona qué Pokémon aparecerán:</p>
-
-        <div class="gen-grid">
-            <!-- Thymeleaf sequence to generate 1-9 gens -->
-            <div class="gen-option" th:each="i : ${#numbers.sequence(1, 9)}">
-
-                <input aria-label="Sel gens" type="checkbox"
-                       th:id="'gen' + ${i}"
-                       name="generations"
-                       th:value="${i}"
-                       th:checked="${i == 1}"> <!-- Gen 1 as default -->
-
-                <label th:for="'gen' + ${i}"
-                       class="gen-label"
-                       th:text="'Gen ' + ${i}">Gen X</label>
-            </div>
+        <div class="game-arrow">
+            <i class="fas fa-chevron-right"></i>
         </div>
-    </div>
+    </a>
 
-    <button type="submit" class="btn-primary">¡Comenzar Juego!</button>
-</form>
+    <a th:href="@{/shiny}" class="game-select-card">
+        <div class="game-icon-wrapper icon-shiny">
+            <i class="fas fa-star"></i>
+        </div>
 
-<script th:src="@{/js/main.js}"></script>
+        <div class="game-info">
+            <h3 class="game-title">Adivina el Shiny</h3>
+            <p class="game-desc">¿Reconoces la versión variocolor?</p>
+        </div>
+
+        <div class="game-arrow">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+    </a>
+
+</div>
+
+<p class="footer-text">Más minijuegos próximamente</p>
 
 </body>
 </html>
