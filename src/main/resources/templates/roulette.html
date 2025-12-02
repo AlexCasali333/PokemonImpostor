@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sorteo Inicial - Ruleta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/roulette.css}">
+</head>
+<body>
+
+<h2 class="header-title">¿Quién empieza?</h2>
+<p class="subtitle">Gira la ruleta para decidir el primer jugador</p>
+
+<div class="container" id="rouletteContainer" style="text-align: center;">
+    <div class="roulette-wrapper">
+        <canvas id="roulette" width="300" height="300" th:data-players="${players}"></canvas>
+        <div id="pin"></div>
+    </div>
+    <br>
+    <button id="spinButton" class="btn-primary" style="margin-top: 20px;">
+        Girar Ruleta
+    </button>
+    <div id="winnerDisplay" style="margin-top: 20px; font-size: 1.5rem; color: #2ed573; display:none;">
+        ¡Empieza <span id="winnerText"></span>!
+    </div>
+    <a href="/" class="back-link" style="margin-top: 40px; display: block;">Volver al Menú Principal</a>
+</div>
+
+<script th:src="@{/js/roulette.js}"></script>
+
+</body>
+</html>
