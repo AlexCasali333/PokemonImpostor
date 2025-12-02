@@ -23,6 +23,17 @@ function markCardAsSeen(element) {
             <div class="seen-text">Visto</div>
         </div>
     `;
+
+    checkIfAllRevealed();
+}
+
+function checkIfAllRevealed() {
+    const totalCards = document.querySelectorAll('.player-card').length;
+    const seenCards = document.querySelectorAll('.player-card.seen').length;
+
+    if (totalCards === seenCards) {
+        window.allRevealed = true;
+    }
 }
 
 function revealRole(nombre, rol, palabra) {
@@ -69,4 +80,10 @@ function closeModal() {
     document.getElementById('modal').classList.remove('active');
     document.getElementById('pokemonImg').src = '';
     document.getElementById('pokemonImg').style.display = 'none';
+
+    if (window.allRevealed) {
+        setTimeout(() => {
+            window.location.href = '/roulette';
+        }, 500);
+    }
 }
