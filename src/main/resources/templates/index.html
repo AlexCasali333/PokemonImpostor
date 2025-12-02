@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Configuración - Pokémon Impostor</title>
@@ -16,7 +16,7 @@
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
             <h3><i class="fas fa-users"></i> Jugadores: <span id="playerCountVal">3</span></h3>
         </div>
-        <input type="range" id="playerSlider" name="playerCount" min="3" max="10" value="3" oninput="updateInputs()">
+        <input aria-label="Seleccionar número de jugadores" type="range" id="playerSlider" name="playerCount" min="3" max="10" value="3" oninput="updateInputs()">
     </div>
 
     <div id="namesContainer">
