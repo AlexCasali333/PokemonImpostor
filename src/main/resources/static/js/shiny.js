@@ -84,10 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const id = randInt(1, MAX_POKEMON);
 
-        let name = 'Pokémon';
+        let name;
         try {
             const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-            if (!res.ok) throw new Error('fetch error');
+            if (!res.ok) return;
             const data = await res.json();
             name = data.name;
         } catch (e) {
