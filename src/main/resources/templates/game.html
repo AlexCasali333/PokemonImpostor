@@ -14,7 +14,7 @@
     <div class="cards-grid">
         <div th:each="player, stat : ${players}"
              class="player-card"
-             th:onclick="|revealRole('${player.name}', '${player.rol}', '${player.secretWord}')|">
+             th:onclick="revealRole([[${player.name}]], [[${player.rol}]], [[${player.secretWord}]])">
 
             <div class="card-number" th:text="${stat.count}">1</div>
             <div class="card-name" th:text="${player.name}">Nombre</div>
