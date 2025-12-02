@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Juego en Curso</title>
@@ -14,7 +14,7 @@
     <div class="cards-grid">
         <div th:each="player, stat : ${players}"
              class="player-card"
-             th:onclick="revealRole([[${player.name}]], [[${player.rol}]], [[${player.secretWord}]])">
+             th:onclick="|revealRole('${player.name}', '${player.rol}', '${player.secretWord}')|">
 
             <div class="card-number" th:text="${stat.count}">1</div>
             <div class="card-name" th:text="${player.name}">Nombre</div>
