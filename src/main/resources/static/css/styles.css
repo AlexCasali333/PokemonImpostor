@@ -144,3 +144,51 @@ input[type="range"] {
     max-width: 90%;
 }
 .role-reveal-text { font-size: 2rem; margin: 20px 0; color: var(--accent); }
+
+/* Generation selector */
+.gen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.gen-option {
+    position: relative;
+}
+
+.gen-option input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+}
+
+.gen-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    user-select: none;
+}
+
+.gen-label:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.gen-option input[type="checkbox"]:checked + .gen-label {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(140, 82, 255, 0.4);
+    transform: translateY(-2px);
+}
