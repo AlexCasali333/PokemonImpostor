@@ -12,18 +12,43 @@
 
 <form action="/start" method="post" class="container">
 
+    <!-- Part 1: Players -->
     <div class="card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
             <h3><i class="fas fa-users"></i> Jugadores: <span id="playerCountVal">3</span></h3>
         </div>
-        <input aria-label="Seleccionar número de jugadores" type="range" id="playerSlider" name="playerCount" min="3" max="10" value="3" oninput="updateInputs()">
+        <input aria-label="Seleccionar número de jugadores" type="range" id="playerSlider" name="playerCount" min="3"
+               max="10" value="3">
     </div>
 
-    <div id="namesContainer">
-    </div>
+    <div id="namesContainer"></div>
 
+    <!-- Part 2: Generations -->
     <div class="card">
-        <h3><i class="fas fa-sliders-h"></i> Rondas Especiales</h3>
+        <h3><i class="fas fa-dna"></i> Generaciones</h3>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom: 15px;">Selecciona qué Pokémon
+            aparecerán:</p>
+
+        <div class="gen-grid">
+            <!-- Bucle de Thymeleaf para generar las 9 generaciones -->
+            <div class="gen-option" th:each="i : ${#numbers.sequence(1, 9)}">
+
+                <input aria-label="Sel gens" type="checkbox"
+                       th:id="'gen' + ${i}"
+                       name="generations"
+                       th:value="${i}"
+                       th:checked="${i == 1}"> <!-- Gen 1 as default -->
+
+                <label th:for="'gen' + ${i}"
+                       class="gen-label"
+                       th:text="'Gen ' + ${i}">Gen X</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extras -->
+    <div class="card">
+        <h3><i class="fas fa-sliders-h"></i> Extras</h3>
         <p style="font-size:0.8rem; color:var(--text-muted)">Doble Impostor (Requiere 5+)</p>
         <div style="background:rgba(255,255,255,0.1); height:4px; border-radius:2px; width:100%;"></div>
     </div>
@@ -31,33 +56,7 @@
     <button type="submit" class="btn-primary">¡Comenzar Juego!</button>
 </form>
 
-<script>
-    const slider = document.getElementById('playerSlider');
-    const countSpan = document.getElementById('playerCountVal');
-    const container = document.getElementById('namesContainer');
+<script th:src="@{/js/main.js}"></script>
 
-    function updateInputs() {
-        const count = slider.value;
-        countSpan.innerText = count;
-
-        const currentValues = [];
-        document.querySelectorAll('input[name="nombres"]').forEach(input => {
-            currentValues.push(input.value);
-        });
-
-        container.innerHTML = '';
-
-        for (let i = 0; i < count; i++) {
-            const val = currentValues[i] || '';
-            const div = document.createElement('div');
-            div.className = 'input-group';
-            div.innerHTML = `
-                    <input type="text" name="playerNames" placeholder="Nombre del Jugador ${i + 1}" value="${val}" required>
-                `;
-            container.appendChild(div);
-        }
-    }
-    updateInputs();
-</script>
 </body>
 </html>
