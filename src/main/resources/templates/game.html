@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego en Curso</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<h2 class="header-title">Revelen sus Roles</h2>
+<p style="color:var(--text-muted); margin-bottom: 30px;">Cada jugador toca su número para ver su carta.</p>
+
+<div class="container">
+    <div class="cards-grid">
+        <div th:each="player, stat : ${players}"
+             class="player-card"
+             th:onclick="revealRole([[${player.name}]], [[${player.rol}]], [[${player.secretWord}]])">
+
+            <div class="card-number" th:text="${stat.count}">1</div>
+            <div class="card-name" th:text="${player.name}">Nombre</div>
+        </div>
+    </div>
+
+    <a href="/" style="margin-top:30px; color: var(--text-muted); text-decoration:none;">&larr; Volver al inicio</a>
+</div>
+
+<div id="modal" class="role-modal" onclick="closeModal()">
+    <div class="role-content" onclick="event.stopPropagation()"><h3 id="modalName" style="color:var(--text-muted)">
+        Jugador</h3>
+        <div style="width:100%; height:1px; background:rgba(255,255,255,0.2); margin:10px 0;"></div>
+
+        <p>Tu rol és:</p>
+        <h1 id="modalRole" class="role-reveal-text">IMPOSTOR</h1>
+
+        <p id="modalWordLabel">Tu palabra és:</p>
+        <h2 id="modalWord" style="color: white;">PIKACHU</h2>
+
+        <button onclick="closeModal()" class="btn-primary" style="margin-top:20px; font-size:1rem; padding:10px;">
+            Entendido (Ocultar)
+        </button>
+    </div>
+</div>
+
+<script>
+    function revealRole(nombre, rol, palabra) {
+        document.getElementById('modalName').innerText = nombre;
+
+        const roleElem = document.getElementById('modalRole');
+        const wordElem = document.getElementById('modalWord');
+        const wordLabel = document.getElementById('modalWordLabel');
+
+        if (rol === 'Impostor') {
+            roleElem.innerText = "IMPOSTOR";
+            roleElem.style.color = "#ff4757"; // Rojo
+            wordElem.style.display = 'none';
+            wordLabel.innerText = "Intenta descubrir la palabra de los demás.";
+        } else {
+            roleElem.innerText = "ENTRENADOR";
+            roleElem.style.color = "#2ed573"; // Verde
+            wordElem.innerText = palabra;
+            wordElem.style.display = 'block';
+            wordLabel.innerText = "Tu palabra secreta es:";
+        }
+
+        document.getElementById('modal').classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.remove('active');
+    }
+</script>
+</body>
+</html>
