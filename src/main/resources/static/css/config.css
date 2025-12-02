@@ -1,0 +1,76 @@
+/* --- BOTONES DE CANTIDAD JUGADORES --- */
+.input-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#addPlayer, #removePlayer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0;
+}
+
+#addPlayer:hover, #removePlayer:hover {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(140, 82, 255, 0.4);
+    transform: translateY(-3px);
+}
+
+#addPlayer:active, #removePlayer:active {
+    transform: scale(0.95);
+}
+
+/* --- SELECTOR DE GENERACIONES --- */
+.gen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.gen-option { position: relative; }
+.gen-option input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 0; height: 0;
+}
+
+.gen-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    user-select: none;
+}
+
+.gen-label:hover { background: rgba(255, 255, 255, 0.1); }
+
+.gen-option input[type="checkbox"]:checked + .gen-label {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(140, 82, 255, 0.4);
+    transform: translateY(-2px);
+}

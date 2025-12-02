@@ -1,4 +1,3 @@
-/* src/main/resources/static/css/styles.css */
 :root {
     --bg-color: #1a1a2e;
     --card-bg: #26263a;
@@ -27,7 +26,7 @@ h1, h2, h3 { margin: 0 0 15px 0; font-weight: 700; }
     margin-bottom: 30px;
 }
 
-/* Containers */
+/* --- UTILIDADES Y CONTENEDORES --- */
 .container {
     width: 100%;
     max-width: 500px;
@@ -43,8 +42,30 @@ h1, h2, h3 { margin: 0 0 15px 0; font-weight: 700; }
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* Inputs & Sliders */
-.input-group { margin-bottom: 15px; }
+.card-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.mb-15 { margin-bottom: 15px; }
+
+.decorative-bar {
+    background: rgba(255, 255, 255, 0.1);
+    height: 4px;
+    border-radius: 2px;
+    width: 100%;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 10px 0;
+}
+
+/* --- INPUTS GENERALES --- */
 input[type="text"] {
     width: 100%;
     background: rgba(255,255,255,0.1);
@@ -62,13 +83,7 @@ input[type="text"]:focus {
     background: rgba(255,255,255,0.15);
 }
 
-input[type="range"] {
-    width: 100%;
-    accent-color: var(--accent);
-    cursor: pointer;
-}
-
-/* Primary Button */
+/* --- BOTONES --- */
 .btn-primary {
     background: var(--accent);
     color: white;
@@ -87,296 +102,9 @@ input[type="range"] {
     box-shadow: 0 0 25px rgba(140, 82, 255, 0.6);
 }
 
-
-.btn-modal {
-    margin-top: 20px;
-    font-size: 1rem;
-    padding: 10px;
-}
-
-/* Back Link */
 .back-link {
     margin-top: 30px;
     color: var(--text-muted);
     text-decoration: none;
     text-align: center;
-}
-
-/* GAME */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    width: 100%;
-}
-
-.player-card {
-    background: var(--card-bg);
-    aspect-ratio: 1/1;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
-    position: relative;
-    border: 2px solid transparent;
-}
-
-.player-card:hover {
-    transform: scale(1.02);
-    background: #32324a;
-    border-color: rgba(140, 82, 255, 0.3);
-}
-
-.card-number {
-    font-size: 3rem;
-    font-weight: bold;
-    color: rgba(255,255,255,0.8);
-}
-
-.card-name {
-    margin-top: 10px;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-/* Role reveal */
-.role-modal {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-.role-modal.active { visibility: visible; opacity: 1; }
-.role-content {
-    background: var(--card-bg);
-    padding: 40px;
-    border-radius: 20px;
-    text-align: center;
-    max-width: 90%;
-}
-.role-reveal-text { font-size: 2rem; margin: 20px 0; color: var(--accent); }
-
-/* Modal Style */
-.modal-player-name {
-    color: var(--text-muted);
-}
-
-.divider {
-    width: 100%;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 10px 0;
-}
-
-.secret-word {
-    color: white;
-}
-
-.pokemon-img {
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
-    margin: 10px auto;
-    display: none;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-}
-
-/* Generation selector */
-.gen-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.gen-option {
-    position: relative;
-}
-
-.gen-option input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    width: 0;
-    height: 0;
-}
-
-.gen-label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 12px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    user-select: none;
-}
-
-.gen-label:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.gen-option input[type="checkbox"]:checked + .gen-label {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-    box-shadow: 0 0 15px rgba(140, 82, 255, 0.4);
-    transform: translateY(-2px);
-}
-
-
-/* Additional Classes */
-.card-header-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.card-instruction {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-}
-
-.mb-15 {
-    margin-bottom: 15px;
-}
-
-.decorative-bar {
-    background: rgba(255, 255, 255, 0.1);
-    height: 4px;
-    border-radius: 2px;
-    width: 100%;
-}
-
-#addPlayer, #removePlayer {
-    font-size: 28px;         /* tamaño del icono */
-    padding: 10px 15px;      /* que parezca botón */
-    border: 2px solid #333;  /* borde */
-    border-radius: 10px;     /* bordes redondeados */
-    cursor: pointer;         /* cursor de botón */
-    margin: 0 8px;           /* separación */
-    transition: all 0.2s ease;
-}
-
-#addPlayer:hover, #removePlayer:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    transform: scale(1.1);   /* pequeño efecto */
-}
-
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: none; /* oculto por defecto */
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.popup-box {
-    background: white;
-    padding: 20px 30px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 18px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    animation: popup-animate 0.2s ease-out;
-}
-
-.popup-box button {
-    margin-top: 15px;
-    padding: 8px 20px;
-    border: none;
-    background: #333;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-@keyframes popup-animate {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-/* --- NEW STYLES FOR SEEN CARDS --- */
-
-/* State when the card is clicked */
-.player-card.seen {
-    background-color: #1f1f35;
-    border-color: #3b3b55;
-    cursor: default;
-    transform: none !important;
-    overflow: hidden;
-    position: relative;
-}
-
-/* Background Pokeball Image */
-.player-card.seen::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-30deg);
-    width: 180%;
-    height: 170%;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    opacity: 0.05;
-    pointer-events: none;
-    filter: grayscale(100%) invert(100%);
-}
-
-.seen-content {
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.check-icon {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #a0a0b0;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 8px;
-}
-
-.check-icon svg {
-    fill: #a0a0b0;
-    width: 24px;
-    height: 24px;
-}
-
-.seen-text {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #a0a0b0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }

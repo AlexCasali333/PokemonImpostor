@@ -1,37 +1,31 @@
+/* src/main/resources/static/js/roulette.js */
+
 const canvas = document.getElementById("roulette");
 const ctx = canvas.getContext("2d");
 const spinButton = document.getElementById("spinButton");
-const winnerDisplay = document.getElementById("winnerDisplay");
+const winnerDiv = document.getElementById("winnerDisplay");
+const winnerText = document.getElementById("winnerText");
+
 const radius = canvas.width / 2;
 let startAngle = 0;
 
-// Array de colores predefinidos (hasta 10)
 const blueColors = [
-    "#8C52FF7F",
-    "rgba(55,25,117,0.5)",
-    "rgba(16,7,37,0.5)",
-    "rgba(122,109,241,0.5)",
-    "rgba(82,189,255,0.5)",
-    "rgba(51,35,85,0.5)",
-    "rgba(107,73,175,0.5)",
-    "rgba(82,111,255,0.5)",
-    "rgba(70,0,216,0.5)",
-    "rgba(82,117,255,0.5)"
+    "#8C52FF", "#5e17eb", "#5271ff", "#8c52ff",
+    "#6c5ce7", "#a29bfe", "#74b9ff", "#0984e3"
 ];
 
 function getPlayersFromCanvas() {
     const data = canvas.getAttribute("data-players");
     if (!data) return [];
 
-    // Regex para extraer cada jugador
-    const regex = /Player\[name=(.*?), rol=(.*?), secretWord=(.*?)]/g;
+    const regexFull = /Player\[name=(.*?), rol=(.*?), secretWord=(.*?)]/g;
+
     const players = [];
     let match;
-    while ((match = regex.exec(data)) !== null) {
+    while ((match = regexFull.exec(data)) !== null) {
         players.push({
             name: match[1],
-            rol: match[2],
-            secretWord: match[3] !== 'null' ? match[3] : null
+            rol: match[2]
         });
     }
     return players;
@@ -39,12 +33,11 @@ function getPlayersFromCanvas() {
 
 function drawRoulette(players) {
     if (players.length === 0) return;
-
     const arc = 2 * Math.PI / players.length;
 
     for (let i = 0; i < players.length; i++) {
         const angle = startAngle + i * arc;
-        ctx.fillStyle =     ctx.fillStyle = blueColors[i % blueColors.length];
+        ctx.fillStyle = blueColors[i % blueColors.length];
 
         ctx.beginPath();
         ctx.moveTo(radius, radius);
@@ -55,43 +48,57 @@ function drawRoulette(players) {
         ctx.translate(radius, radius);
         ctx.rotate(angle + arc / 2);
         ctx.textAlign = "right";
-        ctx.textAlign = "right";
         ctx.fillStyle = "#fff";
-        ctx.font = "16px Arial";
-        ctx.fillText(players[i].name, radius - 10, 0);
+        ctx.font = "bold 18px Segoe UI";
+        ctx.fillText(players[i].name, radius - 20, 5);
         ctx.restore();
     }
 }
 
-// Función para girar la ruleta
 function spinRoulette() {
     const players = getPlayersFromCanvas();
     if (players.length === 0) return;
 
-    const spinAngle = Math.random() * 10 + 10;
-    const totalRotation = spinAngle * 2 * Math.PI;
-    let rotation = 0;
+    winnerDiv.style.display = 'none';
+    spinButton.disabled = true;
 
-    const animation = setInterval(() => {
-        rotation += 0.05;
-        startAngle += 0.05;
+    // Velocity config
+    let currentVelocity = Math.random() * 0.3 + 0.3;
+    const friction = 0.985;
+
+    function animate() {
+        startAngle += currentVelocity;
+        currentVelocity *= friction;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawRoulette(players);
 
-        if (rotation >= totalRotation) {
-            clearInterval(animation);
-            const winnerIndex = Math.floor(
-                ((startAngle - Math.PI / 2 + 2 * Math.PI) % (2 * Math.PI)) / (2 * Math.PI) * players.length
-            ) % players.length;
+        if (currentVelocity < 0.002) {
 
-            console.log(players[winnerIndex]);
+            const degrees = startAngle * 180 / Math.PI + 90;
+            const arcd = 360 / players.length;
+            const index = Math.floor((360 - (degrees % 360)) / arcd);
+
+            const winnerIndex = (index + players.length) % players.length;
+
+            showWinner(players[winnerIndex].name);
+            spinButton.disabled = false;
+        } else {
+            requestAnimationFrame(animate);
         }
-    }, 3);
+    }
+    requestAnimationFrame(animate);
 }
 
-// Ejecutar al cargar
+function showWinner(name) {
+    winnerText.innerText = name;
+    winnerDiv.style.display = 'block';
+}
+
 window.addEventListener("load", () => {
     const players = getPlayersFromCanvas();
+    if(players.length === 0) {
+        console.warn("No se pudieron leer jugadores del atributo data-players");
+    }
     drawRoulette(players);
 });
 
