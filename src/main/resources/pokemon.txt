@@ -781,24 +781,24 @@ Dhelmise
 Jangmo-o
 Hakamo-o
 Kommo-o
-Alolan Rattata
-Alolan Raticate
-Alolan Raichu
-Alolan Sandshrew
-Alolan Sandslash
-Alolan Vulpix
-Alolan Ninetales
-Alolan Diglett
-Alolan Dugtrio
-Alolan Meowth
-Alolan Persian
-Alolan Geodude
-Alolan Graveler
-Alolan Golem
-Alolan Grimer
-Alolan Muk
-Alolan Exeggutor
-Alolan Marowak
+Rattata Alolan
+Raticate Alolan
+Raichu Alolan
+Sandshrew Alolan
+Sandslash Alolan
+Vulpix Alolan
+Ninetales Alolan
+Diglett Alolan
+Dugtrio Alolan
+Meowth Alolan
+Persian Alolan
+Geodude Alolan
+Graveler Alolan
+Golem Alolan
+Grimer Alolan
+Muk Alolan
+Exeggutor Alolan
+Alolan
 Tapu Koko
 Tapu Lele
 Tapu Bulu
@@ -876,27 +876,27 @@ Hatterene
 Impidimp
 Morgrem
 Grimmsnarl
-Galarian Zigzagoon
-Galarian Linoone
+Zigzagoon Galarian
+Linoone Galarian
 Obstagoon
-Galarian Meowth
+Meowth Galarian
 Perrserker Galarian
-Galarian Rapidash
-Galarian Slowpoke
-Galarian Slowbro
-Galarian Slowking
-Galarian Corsola
+Rapidash Galarian
+Slowpoke Galarian
+Slowbro Galarian
+Slowking Galarian
+Corsola Galarian
 Cursola
-Galarian Farfetch’d
+Farfetch’d Galarian
 Sirfetch'd
-Galarian Weezing
-Galarian Mr. Mime
+Weezing Galarian
+Mr. Mime Galarian
 Mr. Rime
-Galarian Darumaka
-Galarian Darmanitan
-Galarian Yamask
+Darumaka Galarian
+Darmanitan Galarian
+Yamask Galarian
 Runerigus
-Galarian Stunfisk
+Stunfisk Galarian
 Milcery
 Alcremie
 Falinks
@@ -928,6 +928,6 @@ Regidrago
 Glastrier
 Spectrier
 Calyrex
-Galarian Articuno
-Galarian Zapdos
-Galarian Moltres
+Articuno Galarian
+Zapdos Galarian
+Moltres Galarian
