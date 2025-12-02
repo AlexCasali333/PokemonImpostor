@@ -5,59 +5,33 @@
     <title>Juego en Curso</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/game.css}">
 </head>
 <body>
-
 <h2 class="header-title">Revelen sus Roles</h2>
 <p class="subtitle">Cada jugador toca su número para ver su carta.</p>
-
-<!-- Contenedor de la ruleta -->
-<div class="container" id="rouletteContainer" >
-    <h3>Ruleta de Jugadores</h3>
-    <canvas id="roulette" width="300" height="300" th:data-players="${players}"></canvas>
-    <div id="pin"></div>
-    <button id="spinButton" class="btn-primary">Girar</button>
-</div>
-
-<!-- Contenedor de las cartas -->
 <div class="container">
     <div class="cards-grid">
-        <div th:each="player, stat : ${players}"
-             class="player-card"
-             th:data-nombre="${player.name}"
-             th:data-rol="${player.rol}"
-             th:data-palabra="${player.secretWord}"
-             onclick="manageClick(this)">
-
-            <div class="card-number" th:text="${stat.count}">1</div>
-            <div class="card-name" th:text="${player.name}">Nombre</div>
+        <div th:each="player, stat : ${players}" class="player-card" th:data-nombre="${player.name}" th:data-rol="${player.rol}" th:data-palabra="${player.secretWord}" onclick="manageClick(this)">
+            <div class="card-number" th:text="${stat.count}">
+                1
+            </div>
+            <div class="card-name" th:text="${player.name}">
+                Nombre
+            </div>
         </div>
     </div>
-
-    <a href="/" class="back-link">&larr; Volver al inicio</a>
 </div>
-
-<!-- MODAL -->
 <div id="modal" class="role-modal" onclick="closeModal()">
     <div class="role-content" onclick="stopPropagation()">
-
         <h3 id="modalName" class="modal-player-name">Jugador</h3>
         <div class="divider"></div>
-        <p>Tu rol es:</p>
-
         <p>Tu rol és:</p>
-        <h1 id="modalRole" class="role-reveal-text">IMPOSTOR</h1>
-        <img id="pokemonImg" class="pokemon-img" src="" alt="Pokemon">
-        <p id="modalWordLabel">Tu palabra és:</p>
-        <h2 id="modalWord" class="secret-word">PIKACHU</h2>
-        <button onclick="closeModal()" class="btn-primary btn-modal">
-            Entendido (Ocultar)
-        </button>
+        <h1 id="modalRole" class="role-reveal-text">IMPOSTOR</h1><img id="pokemonImg" class="pokemon-img" src="" alt="Pokemon">
+        <p id="modalWordLabel">Tu palabra es:</p>
+        <h2 id="modalWord" class="secret-word">PIKACHU</h2><button onclick="closeModal()" class="btn-primary btn-modal">Entendido (Ocultar)</button>
     </div>
 </div>
-
 <script th:src="@{/js/game.js}"></script>
-<script th:src="@{/js/roulette.js}"></script>
-
 </body>
 </html>
