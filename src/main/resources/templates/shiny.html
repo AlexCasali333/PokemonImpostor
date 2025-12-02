@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Minijuego: Adivina el Pokémon variocolor</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/shiny.css}">
+
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Minijuego: Adivina el Pokémon variocolor (¡Shiny!)</h1>
+      <div class="controls">
+        <button id="newRound">Siguiente</button>
+        <button id="reset" class="secondary">Reiniciar marcador</button>
+      </div>
+    </header>
+
+    <div class="game-grid">
+      <section class="card left">
+        <div class="preview">
+          <div class="pokemon-name small" id="pokemonName">—</div>
+          <div class="imgs" id="choices">
+          </div>
+          <div class="result" id="resultText"></div>
+        </div>
+      </section>
+
+      <aside class="card right">
+        <div class="scoreboard">
+          <div class="stat"><div>Puntuación</div><div id="score">0</div></div>
+          <div class="stat"><div>Rondas jugadas</div><div id="rounds">0</div></div>
+          <div class="stat"><div>Aciertos</div><div id="hits">0</div></div>
+          <div class="stat"><div>Fallos</div><div id="fails">0</div></div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="small">Instrucciones: aparece la versión variocolor (shiny) de un Pokémon y otras 3 imágenes con colores alterados. Haz clic en la que creas que es la variocolor.</div>
+      </aside>
+    </div>
+  </div>
+
+  <script th:src="@{/js/shiny.js}"></script>
+</body>
+</html>
