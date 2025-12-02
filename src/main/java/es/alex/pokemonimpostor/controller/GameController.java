@@ -1,16 +1,19 @@
 package es.alex.pokemonimpostor.controller;
 
+import es.alex.pokemonimpostor.model.Player;
 import es.alex.pokemonimpostor.service.GameService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class GameController {
 
     private final GameService gameService;
+    private List<Player> currentPlayers = new ArrayList<>();
 
     public GameController(GameService gameService) {
         this.gameService = gameService;
@@ -21,6 +24,22 @@ public class GameController {
         return "index";
     }
 
+    @GetMapping("/impostor")
+    public String impostorConfig() {
+        return "impostor";
+    }
+
+    @GetMapping("/shiny")
+    public String shinyConfig() {
+        return "shiny";
+    }
+
+    @GetMapping("/roulette")
+    public String showRoulette(Model model) {
+        model.addAttribute("players", this.currentPlayers);
+        return "roulette";
+    }
+
     @PostMapping("/start")
     public String startGame(
             @RequestParam("playerNames") List<String> playerNames,
@@ -28,10 +47,12 @@ public class GameController {
             Model model
     ) {
         if (generations == null || generations.isEmpty()) {
-            generations = List.of(1); // Default gen 1 if none selected
+            generations = List.of(1);
         }
+        List<Player> players = gameService.startGame(playerNames, generations);
+        this.currentPlayers = players;
 
-        model.addAttribute("players", gameService.startGame(playerNames, generations));
+        model.addAttribute("players", players);
         return "game";
     }
 }
