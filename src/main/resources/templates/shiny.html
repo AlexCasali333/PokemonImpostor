@@ -1,46 +1,66 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Minijuego: Adivina el Pokémon variocolor</title>
+    <meta charset="UTF-8">
+    <title>Adivina el Shiny</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <link rel="stylesheet" th:href="@{/css/shiny.css}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <div class="app">
-    <header>
-      <h1>Minijuego: Adivina el Pokémon variocolor (¡Shiny!)</h1>
-      <div class="controls">
-        <button id="newRound">Siguiente</button>
-        <button id="reset" class="secondary">Reiniciar marcador</button>
-      </div>
-    </header>
 
-    <div class="game-grid">
-      <section class="card left">
-        <div class="preview">
-          <div class="pokemon-name small" id="pokemonName">—</div>
-          <div class="imgs" id="choices">
-          </div>
-          <div class="result" id="resultText"></div>
-        </div>
-      </section>
+<h2 class="header-title">Adivina el Shiny</h2>
 
-      <aside class="card right">
-        <div class="scoreboard">
-          <div class="stat"><div>Puntuación</div><div id="score">0</div></div>
-          <div class="stat"><div>Rondas jugadas</div><div id="rounds">0</div></div>
-          <div class="stat"><div>Aciertos</div><div id="hits">0</div></div>
-          <div class="stat"><div>Fallos</div><div id="fails">0</div></div>
-        </div>
-        <div style="height:10px"></div>
-        <div class="small">Instrucciones: aparece la versión variocolor (shiny) de un Pokémon y otras 3 imágenes con colores alterados. Haz clic en la que creas que es la variocolor.</div>
-      </aside>
+<div class="game-header">
+    <p class="subtitle" style="margin:0;">¿Cuál es la versión variocolor?</p>
+    <div class="controls">
+        <button id="newRound" class="btn-primary" style="padding: 8px 20px; font-size: 1rem;">Siguiente</button>
+        <button id="reset" class="btn-secondary">Reiniciar</button>
     </div>
-  </div>
+</div>
 
-  <script th:src="@{/js/shiny.js}"></script>
+<div class="shiny-container">
+
+    <section class="card preview">
+        <div id="pokemonName" class="pokemon-name">Cargando...</div>
+
+        <div id="choices" class="imgs-grid"></div>
+
+        <div id="resultText" class="result-text"></div>
+    </section>
+
+    <aside class="card scoreboard">
+        <h3>Marcador</h3>
+        <div class="decorative-bar mb-15"></div>
+
+        <div class="stat-row">
+            <span>Puntuación</span>
+            <strong id="score" style="color: var(--accent); font-size: 1.2rem;">0</strong>
+        </div>
+        <div class="stat-row">
+            <span>Rondas</span>
+            <strong id="rounds">0</strong>
+        </div>
+        <div class="stat-row">
+            <span>Aciertos</span>
+            <strong id="hits" style="color: #2ed573;">0</strong>
+        </div>
+        <div class="stat-row">
+            <span>Fallos</span>
+            <strong id="fails" style="color: #ff4757;">0</strong>
+        </div>
+
+        <p class="card-instruction" style="margin-top: 15px;">
+            <i class="fas fa-info-circle"></i>
+            Aparecen 4 versiones del mismo Pokémon. Solo una es el <b>Shiny real</b>, las otras son falsificaciones.
+        </p>
+    </aside>
+
+</div>
+
+<a href="/" class="back-link" style="margin-top: 40px;">Volver al menú principal</a>
+
+<script th:src="@{/js/shiny.js}"></script>
 </body>
 </html>
