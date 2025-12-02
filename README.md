@@ -20,3 +20,9 @@ Es un proyecto con **Spring Boot MVC**.
 * **Backend:** Java 17+. Lee los Pokémon desde archivos de texto planos (`gen1.txt`, `gen2.txt`...) según lo que elija el usuario.
 * **Frontend:** HTML + CSS + JS (Vanilla). Sin frameworks pesados.
 * **Imágenes:** No guardo las fotos en el servidor. El JS construye la URL de *PokemonDB* (y arregla los nombres raros como `Alolan Geodude` para que carguen bien).
+
+MIT License
+
+Copyright © 2025 Alex Casali
+
+![License: All Rights Reserved](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)
