@@ -16,10 +16,13 @@
     <!-- Part 1: Players -->
     <div class="card">
         <div class="card-header-flex">
-            <h3><i class="fas fa-users"></i> Jugadores: <span id="playerCountVal">3</span></h3>
+            <h3><i class="fas fa-users"></i> (Max 10) Jugadores actuales: <span id="playerCountVal">3</span></h3>
         </div>
-        <input aria-label="Seleccionar número de jugadores" type="range" id="playerSlider" name="playerCount" min="3"
-               max="10" value="3">
+
+        <div class="input-group mb-3">
+            <i class="fa-solid fa-minus" id="removePlayer"></i>
+            <i class="fa-solid fa-plus" id="addPlayer"></i>
+        </div>
     </div>
 
     <div id="namesContainer"></div>
@@ -44,14 +47,6 @@
                        th:text="'Gen ' + ${i}">Gen X</label>
             </div>
         </div>
-    </div>
-
-    <!-- Extras -->
-    <div class="card">
-        <h3><i class="fas fa-sliders-h"></i> Extras</h3>
-        <p class="card-instruction">Doble Impostor (Requiere 5+)</p>
-
-        <div class="decorative-bar"></div>
     </div>
 
     <button type="submit" class="btn-primary">¡Comenzar Juego!</button>

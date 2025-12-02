@@ -1,12 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const slider = document.getElementById('playerSlider');
+    const btnMinus = document.getElementById('removePlayer');
+    const btnPlus = document.getElementById('addPlayer');
     const countSpan = document.getElementById('playerCountVal');
     const container = document.getElementById('namesContainer');
 
-    function updateInputs() {
-        if (!slider || !countSpan || !container) return;
+    // Valor inicial
+    let count = parseInt(countSpan.innerText) || 1;
 
-        const count = slider.value;
+    function updateInputs() {
+        if (!countSpan || !container) return;
+
         countSpan.innerText = count;
 
         const currentValues = [];
@@ -21,14 +24,31 @@ document.addEventListener('DOMContentLoaded', function() {
             const div = document.createElement('div');
             div.className = 'input-group';
             div.innerHTML = `
-                <input type="text" name="playerNames" placeholder="Name for Player ${i + 1}" value="${val}" required>
+                <input type="text" name="playerNames" placeholder="Jugador ${i + 1}" value="${val}" required>
             `;
             container.appendChild(div);
         }
     }
 
-    if (slider) {
-        slider.addEventListener('input', updateInputs);
-        updateInputs();
-    }
+    // ➕ Añadir jugador
+    btnPlus.addEventListener('click', () => {
+        if (count < 10) {
+            count++;
+            updateInputs();
+        } else {
+            alert("Máximo 10 jugadores");
+        }
+    });
+
+    // ➖ Quitar jugador
+    btnMinus.addEventListener('click', () => {
+        if (count > 3) {
+            count--;
+            updateInputs();
+        } else {
+            alert("Minimo 3 jugadores");
+        }
+    });
+
+    updateInputs();
 });
