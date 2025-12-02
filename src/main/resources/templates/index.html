@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuración - Pokémon Impostor</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<h2 class="header-title">Configuración</h2>
+
+<form action="/start" method="post" class="container">
+
+    <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <h3><i class="fas fa-users"></i> Jugadores: <span id="playerCountVal">3</span></h3>
+        </div>
+        <input type="range" id="playerSlider" name="playerCount" min="3" max="10" value="3" oninput="updateInputs()">
+    </div>
+
+    <div id="namesContainer">
+    </div>
+
+    <div class="card">
+        <h3><i class="fas fa-sliders-h"></i> Rondas Especiales</h3>
+        <p style="font-size:0.8rem; color:var(--text-muted)">Doble Impostor (Requiere 5+)</p>
+        <div style="background:rgba(255,255,255,0.1); height:4px; border-radius:2px; width:100%;"></div>
+    </div>
+
+    <button type="submit" class="btn-primary">¡Comenzar Juego!</button>
+</form>
+
+<script>
+    const slider = document.getElementById('playerSlider');
+    const countSpan = document.getElementById('playerCountVal');
+    const container = document.getElementById('namesContainer');
+
+    function updateInputs() {
+        const count = slider.value;
+        countSpan.innerText = count;
+
+        const currentValues = [];
+        document.querySelectorAll('input[name="nombres"]').forEach(input => {
+            currentValues.push(input.value);
+        });
+
+        container.innerHTML = '';
+
+        for (let i = 0; i < count; i++) {
+            const val = currentValues[i] || '';
+            const div = document.createElement('div');
+            div.className = 'input-group';
+            div.innerHTML = `
+                    <input type="text" name="playerNames" placeholder="Nombre del Jugador ${i + 1}" value="${val}" required>
+                `;
+            container.appendChild(div);
+        }
+    }
+    updateInputs();
+</script>
+</body>
+</html>
