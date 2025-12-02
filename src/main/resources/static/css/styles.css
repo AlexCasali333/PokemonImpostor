@@ -262,3 +262,66 @@ input[type="range"] {
     border-radius: 2px;
     width: 100%;
 }
+
+/* --- NEW STYLES FOR SEEN CARDS --- */
+
+/* State when the card is clicked */
+.player-card.seen {
+    background-color: #1f1f35;
+    border-color: #3b3b55;
+    cursor: default;
+    transform: none !important;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Pokeball Image */
+.player-card.seen::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    width: 180%;
+    height: 170%;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.05;
+    pointer-events: none;
+    filter: grayscale(100%) invert(100%);
+}
+
+.seen-content {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.check-icon {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #a0a0b0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.check-icon svg {
+    fill: #a0a0b0;
+    width: 24px;
+    height: 24px;
+}
+
+.seen-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #a0a0b0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
