@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Configuración - Pokémon Impostor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -14,7 +15,7 @@
 
     <!-- Part 1: Players -->
     <div class="card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <div class="card-header-flex">
             <h3><i class="fas fa-users"></i> Jugadores: <span id="playerCountVal">3</span></h3>
         </div>
         <input aria-label="Seleccionar número de jugadores" type="range" id="playerSlider" name="playerCount" min="3"
@@ -26,11 +27,10 @@
     <!-- Part 2: Generations -->
     <div class="card">
         <h3><i class="fas fa-dna"></i> Generaciones</h3>
-        <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom: 15px;">Selecciona qué Pokémon
-            aparecerán:</p>
+        <p class="card-instruction mb-15">Selecciona qué Pokémon aparecerán:</p>
 
         <div class="gen-grid">
-            <!-- Bucle de Thymeleaf para generar las 9 generaciones -->
+            <!-- Thymeleaf sequence to generate 1-9 gens -->
             <div class="gen-option" th:each="i : ${#numbers.sequence(1, 9)}">
 
                 <input aria-label="Sel gens" type="checkbox"
@@ -49,8 +49,9 @@
     <!-- Extras -->
     <div class="card">
         <h3><i class="fas fa-sliders-h"></i> Extras</h3>
-        <p style="font-size:0.8rem; color:var(--text-muted)">Doble Impostor (Requiere 5+)</p>
-        <div style="background:rgba(255,255,255,0.1); height:4px; border-radius:2px; width:100%;"></div>
+        <p class="card-instruction">Doble Impostor (Requiere 5+)</p>
+
+        <div class="decorative-bar"></div>
     </div>
 
     <button type="submit" class="btn-primary">¡Comenzar Juego!</button>

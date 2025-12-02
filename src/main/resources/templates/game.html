@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Juego en Curso</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 
 <h2 class="header-title">Revelen sus Roles</h2>
-<p style="color:var(--text-muted); margin-bottom: 30px;">Cada jugador toca su número para ver su carta.</p>
+<p class="subtitle">Cada jugador toca su número para ver su carta.</p>
 
 <div class="container">
     <div class="cards-grid">
         <div th:each="player, stat : ${players}"
              class="player-card"
-             style="cursor: pointer;"
              th:data-nombre="${player.name}"
              th:data-rol="${player.rol}"
              th:data-palabra="${player.secretWord}"
@@ -25,26 +25,26 @@
         </div>
     </div>
 
-    <a href="/" style="margin-top:30px; color: var(--text-muted); text-decoration:none;">&larr; Volver al inicio</a>
+    <a href="/" class="back-link">&larr; Volver al inicio</a>
 </div>
 
 <!-- MODAL -->
 <div id="modal" class="role-modal" onclick="closeModal()">
     <div class="role-content" onclick="event.stopPropagation()">
 
-        <h3 id="modalName" style="color:var(--text-muted)">Jugador</h3>
-        <div style="width:100%; height:1px; background:rgba(255,255,255,0.2); margin:10px 0;"></div>
+        <h3 id="modalName" class="modal-player-name">Jugador</h3>
+
+        <div class="divider"></div>
 
         <p>Tu rol es:</p>
         <h1 id="modalRole" class="role-reveal-text">IMPOSTOR</h1>
 
-        <img id="pokemonImg" src="" alt="Pokemon"
-             style="width: 150px; height: 150px; object-fit: contain; margin: 10px auto; display: none; filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));">
+        <img id="pokemonImg" class="pokemon-img" src="" alt="Pokemon">
 
         <p id="modalWordLabel">Tu palabra es:</p>
-        <h2 id="modalWord" style="color: white;">PIKACHU</h2>
+        <h2 id="modalWord" class="secret-word">PIKACHU</h2>
 
-        <button onclick="closeModal()" class="btn-primary" style="margin-top:20px; font-size:1rem; padding:10px;">
+        <button onclick="closeModal()" class="btn-primary btn-modal">
             Entendido (Ocultar)
         </button>
     </div>
