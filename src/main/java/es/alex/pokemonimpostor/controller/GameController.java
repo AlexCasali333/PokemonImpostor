@@ -24,9 +24,14 @@ public class GameController {
     @PostMapping("/start")
     public String startGame(
             @RequestParam("playerNames") List<String> playerNames,
+            @RequestParam(value = "generations", required = false) List<Integer> generations,
             Model model
     ) {
-        model.addAttribute("players", gameService.startGame(playerNames));
+        if (generations == null || generations.isEmpty()) {
+            generations = List.of(1); // Default gen 1 if none selected
+        }
+
+        model.addAttribute("players", gameService.startGame(playerNames, generations));
         return "game";
     }
 }
