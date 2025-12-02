@@ -6,17 +6,19 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 @Service
 public class GameService {
 
-    public List<Player> startGame(List<String> playerNames) {
+    public List<Player> startGame(List<String> playerNames, List<Integer> generations) {
+        List<String> availablePokemons = loadPokemonList(generations);
+        String secretWord = getRandomPokemon(availablePokemons);
+
         List<Player> playerList = new ArrayList<>();
-        String secretWord = getRandomPokemon(loadPokemonList());
         int impostorIndex = new Random().nextInt(playerNames.size());
 
         // We assign roles and secret words to players
@@ -29,16 +31,28 @@ public class GameService {
         return playerList;
     }
 
-    private static List<String> loadPokemonList() {
-        InputStream stream = GameService.class.getClassLoader().getResourceAsStream("pokemon.txt");
-        if (stream == null) {
-            throw new RuntimeException("Resource pokemon.txt not found");
-        }
+    private List<String> loadPokemonList(List<Integer> generations) {
+        List<String> combinedList = new ArrayList<>();
 
-        return new BufferedReader(new InputStreamReader(stream))
-                .lines()
-                .filter(line -> !line.isBlank())
-                .collect(Collectors.toList());
+        for (Integer gen : generations) {
+            String filename = "data/gen" + gen + ".txt";
+            InputStream stream = getClass().getClassLoader().getResourceAsStream(filename);
+
+            if (stream != null) {
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8))) {
+                    List<String> genList = reader.lines()
+                            .filter(line -> !line.isBlank())
+                            .map(String::trim)
+                            .toList();
+                    combinedList.addAll(genList);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Warning: File " + filename + " not found. Skipping.");
+            }
+        }
+        return combinedList;
     }
 
     private static String getRandomPokemon(List<String> pokemons) {
