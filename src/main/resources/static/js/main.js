@@ -30,23 +30,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ➕ Añadir jugador
     btnPlus.addEventListener('click', () => {
         if (count < 10) {
             count++;
             updateInputs();
-        } else {
-            alert("Máximo 10 jugadores");
         }
     });
 
-    // ➖ Quitar jugador
     btnMinus.addEventListener('click', () => {
         if (count > 3) {
             count--;
             updateInputs();
-        } else {
-            alert("Minimo 3 jugadores");
         }
     });
 
