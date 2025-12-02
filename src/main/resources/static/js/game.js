@@ -1,8 +1,28 @@
-function manageClick(elemento) {
-    const nombre = elemento.getAttribute('data-nombre');
-    const rol = elemento.getAttribute('data-rol');
-    const palabra = elemento.getAttribute('data-palabra');
+function manageClick(element) {
+    // If already seen, do nothing
+    if (element.classList.contains('seen')) return;
+
+    const nombre = element.getAttribute('data-nombre');
+    const rol = element.getAttribute('data-rol');
+    const palabra = element.getAttribute('data-palabra');
+
+    markCardAsSeen(element);
     revealRole(nombre, rol, palabra);
+}
+
+function markCardAsSeen(element) {
+    element.classList.add('seen');
+
+    element.innerHTML = `
+        <div class="seen-content">
+            <div class="check-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+            </div>
+            <div class="seen-text">Visto</div>
+        </div>
+    `;
 }
 
 function revealRole(nombre, rol, palabra) {
@@ -15,7 +35,7 @@ function revealRole(nombre, rol, palabra) {
 
     if (rol === 'Impostor') {
         roleElem.innerText = "IMPOSTOR";
-        roleElem.style.color = "#ff4757"; // Rojo
+        roleElem.style.color = "#ff4757"; // Red
 
         wordElem.style.display = 'none';
         imgElem.style.display = 'none'; // Impostor does not have any image
@@ -23,7 +43,7 @@ function revealRole(nombre, rol, palabra) {
         wordLabel.innerText = "Intenta descubrir la palabra de los demás.";
     } else {
         roleElem.innerText = "ENTRENADOR";
-        roleElem.style.color = "#2ed573"; // Verde
+        roleElem.style.color = "#2ed573"; // Green
 
         wordElem.innerText = palabra;
         wordElem.style.display = 'block';
