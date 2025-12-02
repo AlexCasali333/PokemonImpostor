@@ -18,7 +18,7 @@ function getPlayersFromCanvas() {
     const data = canvas.getAttribute("data-players");
     if (!data) return [];
 
-    const regexFull = /Player\[name=(.*?), rol=(.*?), secretWord=(.*?)\]/g;
+    const regexFull = /Player\[name=(.*?), rol=(.*?), secretWord=(.*?)]/g;
 
     const players = [];
     let match;
