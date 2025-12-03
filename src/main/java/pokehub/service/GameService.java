@@ -1,6 +1,6 @@
-package es.alex.pokemonimpostor.service;
+package pokehub.service;
 
-import es.alex.pokemonimpostor.model.Player;
+import pokehub.model.Player;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;

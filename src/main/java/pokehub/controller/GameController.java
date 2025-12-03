@@ -1,7 +1,7 @@
-package es.alex.pokemonimpostor.controller;
+package pokehub.controller;
 
-import es.alex.pokemonimpostor.model.Player;
-import es.alex.pokemonimpostor.service.GameService;
+import pokehub.model.Player;
+import pokehub.service.GameService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
